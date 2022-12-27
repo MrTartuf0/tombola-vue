@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombola</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="snow"></div>
+    <section id="app">
+
+        <div class="title">
+            Tombola Natalizia
+        </div>
+
+        <div class="button-container">
+            <button @click="drawNumber" :disabled="buttonDisabled">
+                Pesca un numero!
+            </button>
+        </div>
+
+        <div class="random">
+            <h2 id="numero-pescato-text" v-if="!buttonClicked">
+                ^ Premi questo pulsante per iniziare ^
+            </h2>
+            <h2 id="numero-pescato-text" v-else>
+                Numero pescato: 
+            </h2>
+            
+            <h1 id="numero-pescato">{{ randomNumber }}</h1>
+            <img src="./babbo.png">
+        </div>
+
+        <div class="grid">
+            <div :class="cartelle[0]" v-for="cartelle in numeriTombola">
+                <div class="num" :class="{taken: drawnNumbers.includes(num)}" v-for="num in cartelle[1]">{{ num }}</div>
+            </div>
+        </div>
+
+    </section>
+    <script src="./main.js"></script>
+    <script src="./PureSnow.js"></script>
+</body>
+</html>
